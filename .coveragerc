@@ -1,0 +1,8 @@
+[run]
+
+# set the sources 
+source = sgt
+
+# files to ignore
+omit = 
+    sgt/*/__init__.py

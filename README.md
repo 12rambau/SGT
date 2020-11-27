@@ -1,4 +1,4 @@
-# sepal_geospatial_toolkit
+# sepal geospatial toolkit
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/12rambau/sepal_geospatial_toolkit.svg?branch=master)](https://travis-ci.org/12rambau/sepal_geospatial_toolkit)

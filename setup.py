@@ -13,8 +13,9 @@ setup(
     download_url = 'https://github.com/12rambau/sepal_geospatial_toolkit/archive/v_0.0.0.tar.gz',
     keywords = ['Python', 'sepal', 'geospatial'], 
     install_requires=[
-        geopandas,
-        rasterio    
+        'geopandas',
+        'rasterio',
+        'coverage'
     ],
     classifiers=[
         'Development Status :: 1 - Planning',

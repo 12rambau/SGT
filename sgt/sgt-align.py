@@ -40,7 +40,8 @@ def align(src_rst, template_rst, out_rst):
                     dst_crs=tplt.crs,
                     resampling=Resampling.bilinear
                 ) 
-    return
+                
+    return out_rst
 
 if __name__ == "__main__":
     
@@ -51,3 +52,7 @@ if __name__ == "__main__":
     
     # launch the function 
     res = align(src_rst, template_rst, out_rst)
+    
+    # dispay result 
+    if res:
+        print(f'The raster has been align in {res}')

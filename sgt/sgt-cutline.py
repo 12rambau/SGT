@@ -47,7 +47,7 @@ if __name__ == "__main__":
     shape_vector = sys.argv[sys.argv.index('-s') + 1]
     
     # launch the function 
-    res = align(src_rst, shape_vector, out_rst)
+    res = cutline(src_rst, shape_vector, out_rst)
     
     # dispay result 
     if res:

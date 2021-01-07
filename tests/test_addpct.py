@@ -73,7 +73,7 @@ class TestAddPCT(unittest.TestCase):
         """create a fake tif of defined shap with only 0s"""
         
         # create a dataset 
-        shape = (60, 60)
+        shape = (1, 60, 60)
         data = np.zeros(shape, dtype=int)
         
         # burn it into a file 

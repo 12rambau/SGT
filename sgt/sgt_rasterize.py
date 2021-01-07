@@ -45,7 +45,7 @@ def rasterize(src_vector, out_rst, res=30, column=None):
         
     # convert the metric resolution into deg (as we work in EPSG 4326)
     # consider the equator approximation : 1° = 111 Km
-    res = (res/111)e-3
+    res = (res/111)*(10**(-3))
         
     # define the shape based on the required resolution
     minx, miny, maxx, maxy = df.geometry.total_bounds
@@ -59,7 +59,7 @@ def rasterize(src_vector, out_rst, res=30, column=None):
     out_meta = default_profile
     out_met.update(
         width = width,
-        height = height
+        height = height,
         dtype = rio.dtypes.get_minimum_dtype(data)
     )
     

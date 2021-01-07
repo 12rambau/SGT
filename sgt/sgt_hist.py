@@ -3,7 +3,7 @@ import sys
 import rasterio as rio
 import numpy as np
 
-def stat(src_rst, out_csv, mask_rst):
+def his(src_rst, out_csv, mask_rst):
     """ computes image histogram by segments. 
     
     Args : 
@@ -47,12 +47,10 @@ def stat(src_rst, out_csv, mask_rst):
     
     # create the dataset content
     mask_id = []
-    size = []
+    frequencies = []
     bands = []
-    avg = []
-    std_dev = []
-    min_ = []
-    max_ = []
+    values = []
+    hists = []
     
     # loop in each feature of the mask
     for feat in features:
@@ -66,33 +64,29 @@ def stat(src_rst, out_csv, mask_rst):
             else:
                 slice_ = src[i][mask == feat]
                 
-            # get the band content
-            loc_size = slice_.shape[0]
-            loc_avg = np.mean(slice_)
-            loc_std = np.std(slice_)
-            loc_min = np.amin(slice_)
-            loc_max = np.amax(slice_)
-            
-            #wirte the line in the lists
-            mask_id.append(feat)
-            size.append(loc_size)
-            bands.append(band)
-            avg.append(loc_avg)
-            std_dev.append(loc_std)
-            min_.append(loc_min)
-            max_.append(loc_max)
+            # get the size 
+            size = slice_.shape[0]
+                
+            # count all the possible classes 
+            loc_count = np.bincount(slice_)
+                
+            # create a list of value that only keep the not null one
+            loc_features = [i in range(np.amax(slice_) + 1)]
+            loc_features = features[np.nonzero(loc_count)]
+                
+            # do the same for the loc_count
+            loc_count = loc_count[np.nonzero(loc_count)]
+                
+            # add the value to the output
+            mask_id += [feat for i in range(loc_count.shape[0])]
+            frequencies += [size for i in range(loc_count.shape[0])]
+            bands += [band for i in range(loc_count.shape[0])]
+            values += loc_features
+            hist += loc_count
             
     
     # create the final dataframe 
-    df = pd.DataFrame({
-        'mask_id': mask_id,
-        'frequency': size, 
-        'band': bands, 
-        'mean': avg, 
-        'std_dev': std_dev, 
-        'min': min_, 
-        'max': max_
-    })
+    df = pd.DataFrame({'mask_id': mask_id, 'frequency': frequencies, 'band': bands, 'value': values, 'histogram': hists})
     
     # export 
     df.to_csv(out_csv, index=False)
@@ -107,8 +101,8 @@ if __name__ == "__main__":
     mask_rst = sys.argv[index('-s') + 1]
     
     # launch the function 
-    res = stat(src_rst, out_csv, mask_rst)
+    res = his(src_rst, out_csv, mask_rst)
     
     # dispay result 
     if res:
-        print(f'The segemented stats have been created : {out_csv}')
+        print(f'The segemented histogram have been created : {out_csv}')

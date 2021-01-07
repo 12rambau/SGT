@@ -31,10 +31,10 @@ def add_pct(src_rst, colors, out_rst=None):
         out_rst = src_rst
         
     # add the pct to the output file 
-    with rasterio.open(src_rst) as src:
+    with rio.open(src_rst) as src:
         out_meta = src.meta.copy()
         
-    with rasterio.open(out_rst, "w", **out_meta) as dst:
+    with rio.open(out_rst, "w", **out_meta) as dst:
         dst.write_colormap(1, colormap)
         
     #print(f'The color palette have been add to the raster and saved in {out_rst}')

@@ -74,7 +74,7 @@ class TestAddPCT(unittest.TestCase):
         
         # create a dataset 
         shape = (1, 60, 60)
-        data = np.zeros(shape, dtype=int)
+        data = np.zeros(shape, dtype=float)
         
         # burn it into a file 
         file = tmp_dir.joinpath('add_pct.tif')

@@ -1,3 +1,7 @@
+# known bug of rasterio 
+import os 
+if 'GDAL_DATA' in os.environ: del os.environ['GDAL_DATA']
+
 import sys
 import logging
 import pathlib

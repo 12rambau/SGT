@@ -1,6 +1,9 @@
+# known bug of rasterio 
+import os 
+if 'GDAL_DATA' in os.environ: del os.environ['GDAL_DATA']
+
 import unittest
 from pathlib import Path
-import os
 
 import numpy as np 
 import rasterio as rio 
@@ -52,37 +55,19 @@ class TestAddPCT(unittest.TestCase):
         
         return
     
-    def test_cli(self):
-        
-        # create a fake tif 
-        
-        # create a fake color table 
-        
-        # add the color palette to another file 
-        
-        # delete the file 
-        
-        # add the palette to the current file 
-        
-        # delete everything
-        
-        
-        return 
-    
     def fake_tif(self):
         """create a fake tif of defined shap with only 0s"""
         
         # create a dataset 
         shape = (1, 60, 60)
-        data = np.zeros(shape, dtype=float)
+        data = np.zeros(shape, dtype=np.uint8)
         
         # burn it into a file 
         file = tmp_dir.joinpath('add_pct.tif')
         
         kwargs = {
             'driver': 'GTiff', 
-            'dtype': 'float64', 
-            'nodata': np.nan, 
+            'dtype': 'uint8', 
             'width': shape[0], 
             'height': shape[1], 
             'count': 1, 

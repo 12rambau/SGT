@@ -4,6 +4,7 @@ if 'GDAL_DATA' in os.environ: del os.environ['GDAL_DATA']
     
 import unittest
 from pathlib import Path
+
 import numpy as np
 
 from sgt import *

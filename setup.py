@@ -15,7 +15,10 @@ setup(
     install_requires=[
         'geopandas',
         'rasterio',
-        'coverage'
+        'coverage',
+        'scipy',
+        'numpy',
+        'pandas'
     ],
     classifiers=[
         'Development Status :: 1 - Planning',

@@ -6,7 +6,6 @@ import unittest
 from pathlib import Path
 
 import rasterio as rio
-from matplotlib import pyplot as plt
 import numpy as np
 
 from sgt import * 

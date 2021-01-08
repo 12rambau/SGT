@@ -62,7 +62,7 @@ class TestClump(unittest.TestCase):
             'dtype': 'uint8', 
             'width': shape[1], 
             'height': shape[2], 
-            'count': band, 
+            'count': bands, 
             'crs': crs, 
             'tiled': False, 
             'compress': 'lzw', 

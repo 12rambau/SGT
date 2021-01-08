@@ -58,6 +58,11 @@ class TestAddPCT(unittest.TestCase):
     def fake_tif(self):
         """create a fake tif of defined shap with only 0s"""
         
+        # initiate parameters 
+        crs = rio.crs.CRS.from_epsg(4326)
+        res = 0.00026949458523585647 # ~30m in deg
+        transform = rio.transform.from_origin(.0, .0, res, -res)
+        
         # create a dataset 
         shape = (1, 60, 60)
         data = np.zeros(shape, dtype=np.uint8)
@@ -68,13 +73,14 @@ class TestAddPCT(unittest.TestCase):
         kwargs = {
             'driver': 'GTiff', 
             'dtype': 'uint8', 
-            'width': shape[0], 
-            'height': shape[1], 
+            'width': shape[1], 
+            'height': shape[2], 
             'count': 1, 
-            'crs': rio.crs.CRS.from_epsg(4326), 
+            'crs': crs, 
             'tiled': False, 
             'compress': 'lzw', 
-            'interleave': 'band'
+            'interleave': 'band',
+            'transform': transform
         }
         
         with rio.open(file, 'w', **kwargs) as dst:

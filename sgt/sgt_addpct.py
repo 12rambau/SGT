@@ -3,7 +3,6 @@ import os
 if 'GDAL_DATA' in os.environ: del os.environ['GDAL_DATA']
 
 import sys
-import logging
 import pathlib
 
 import rasterio as rio
@@ -88,7 +87,6 @@ if __name__ == "__main__":
         required = False,
         type = pathlib.Path
     )
-    
     parser.add_argument(
         '--no-v',
         dest = 'verbose',
@@ -97,7 +95,7 @@ if __name__ == "__main__":
         help = "remove the verbose option"
     )
     
-    #parse tha current arguments
+    # parse tha current arguments
     args = parser.parse_args()
     
     # launch the function 

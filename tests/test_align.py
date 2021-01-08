@@ -42,7 +42,7 @@ class TestAlign(unittest.TestCase):
         return
     
     def fake_source(self):
-    """create a fake tif of defined shap with only 1s in EPSG:4326 with landsat res (30m)"""
+        """create a fake tif of defined shap with only 1s in EPSG:4326 with landsat res (30m)"""
     
         # initiate parameters 
         crs = rio.crs.CRS.from_epsg(4326)

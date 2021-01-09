@@ -99,7 +99,7 @@ class TestCutline(unittest.TestCase):
         
         # create the dataset
         data = np.zeros((4,4), dtype=np.uint8)
-        data[1,1] = 1
+        data[0,0] = 1
         data[2:,2:] = 1
         
         return data

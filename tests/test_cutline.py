@@ -42,7 +42,7 @@ class TestCutline(unittest.TestCase):
         with rio.open(dst) as f:
             data = f.read(1)
             expected_result = self.expected_result()
-            self.assertEqual(data, expected_result)
+            self.assertTrue((data==expected_result).all())
             
         # delete all files
         os.remove(src)

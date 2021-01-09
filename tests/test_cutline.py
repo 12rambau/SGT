@@ -82,7 +82,7 @@ class TestCutline(unittest.TestCase):
         
         return file
 
-    def fake_shape():
+    def fake_shapes():
         """create a shahpaefile composed of 2 squares, one in the middle and one in the top left corner"""
         
         gdf = gpd.GeoDataFrame({'geometry': [sg.Point(0,0), sg.Point(west, north)]}, crs=crs) \

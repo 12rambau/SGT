@@ -18,6 +18,7 @@ adjacent similar classified areas.
         band (int, optionnal) : use determined band of the image (if not defaulted to the first one)
         mask_rst (str, optional) : use maskfile and process only areas having mask
 value >0
+        verbose (bool) : wether to display the print info
         
     Return :
         out_rst

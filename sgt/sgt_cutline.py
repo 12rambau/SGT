@@ -1,27 +1,40 @@
 import sys
+import pathlib 
+import argparse
 
 import rasterio as rio
+from rasterio.mask import mask
 import geopandas as gpd
 
-def cutline(src_rst, shape_vector, out_rst):
-    """ Align a source raster on a template
+from sgt.utils import custom_print
+
+def cutline(src_rst, shape_vector, out_rst, verbose=False):
+    """ Cut the raster on a .shp vector file
     
     Args : 
         src_rst (str) : path to the source raster
         shape_vector (str) : path to the cutting shapefile
         out_rst (str) : path to the output raster
+        verbose (bool) : wether to display the print info
         
     Return :
         out_rst
         
     """
     
-    # read the shapefile 
-    gdf = gpd.read_file(shape_vector)
-    shapes = gdf.geometry
+    # apply the verbose option
+    v_print = custom_print(verbose)
     
     # cut the source raster 
-    with rasterio.open(src_rst) as src:
+    with rio.open(src_rst) as src:
+        
+        # get the crs 
+        crs = src.crs
+        
+        # read the shapefile 
+        gdf = gpd.read_file(shape_vector).to_crs(crs)
+        shapes = gdf.geometry
+    
         out_image, out_transform = mask(src, shapes, all_touched=True, crop=True)
     
         out_meta = src.meta.copy()
@@ -34,21 +47,57 @@ def cutline(src_rst, shape_vector, out_rst):
         )
     
     # write the croped image into the dst file
-    with rasterio.open(out_rst, "w", **out_meta) as dst:
+    with rio.open(out_rst, "w", **out_meta) as dst:
         dst.write(out_image)
     
-    return out_rst
+    v_print(f'The raster has been cut to {shape_vector} extends and saved in {out_rst}')
+    
+    return
 
 if __name__ == "__main__":
     
+    # write the description
+    descript = "Cut the raster on a .shp vector file"
+    
+    # create an arg parser 
+    parser = argparse.ArgumentParser(description=descript)
+    
     # read arguments
-    out_rst = sys.argv[sys.argv.index('-o') + 1]
-    src_rst = sys.argv[sys.argv.index('-i') + 1]
-    shape_vector = sys.argv[sys.argv.index('-s') + 1]
+    parser.add_argument(
+        '-i',
+        dest = 'src_rst',
+        metavar = 'source.tif',
+        help = '(str) : path to the source raster',
+        required = True,
+        type = pathlib.Path
+    )
+    parser.add_argument(
+        '-o',
+        dest = 'out_rst',
+        metavar = 'output.tif',
+        help = '(str) : path to the output raster',
+        required = True,
+        type = pathlib.Path
+    )
+    parser.add_argument(
+        '-s',
+        dest = 'shape_vector',
+        metavar = 'shapes.shp',
+        help = '(str) : path to the vector file',
+        required = True,
+        type = pathlib.Path
+    )
+    parser.add_argument(
+        '--no-v',
+        dest = 'verbose',
+        action='store_false',
+        required = False,
+        help = 'remove the verbose option'
+    )  
+    
+    # read arguments
+    args = parser.parse_args()
     
     # launch the function 
-    res = cutline(src_rst, shape_vector, out_rst)
-    
-    # dispay result 
-    if res:
-        print(f'The raster has been cut to {shape_vector} extends and saved in {out_rst}')
+    cutline(**vars(args))
+        

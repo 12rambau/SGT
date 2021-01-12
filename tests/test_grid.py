@@ -46,7 +46,7 @@ class TestGrid(unittest.TestCase):
         
         return 
     
-    def fake_shape():
+    def fake_shape(self):
         """create a shahpaefile composed of 1 squares, one in the middle"""
     
         gdf = gpd.GeoDataFrame({'geometry': [sg.Point(0,0)]}, crs='EPSG:3857') .buffer(nb_cell*grid_size, cap_style=3)

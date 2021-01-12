@@ -39,7 +39,7 @@ class TestGrid(unittest.TestCase):
         self.assertEqual(len(res), 144)
         
         bounds = np.array([-0.00161697, -0.00161697,  0.00161697,  0.00161697])
-        self.assertTrue((res.total_bounds==bounds).all())
+        self.assertTrue(np.isclose(res.total_bounds, bounds).all())
         
         # delete all files 
         self.del_shp(src)

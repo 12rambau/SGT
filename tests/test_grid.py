@@ -7,6 +7,7 @@ from pathlib import Path
 
 import geopandas as gpd
 import numpy as np
+import shapely.geometry as sg
 
 from sgt import *
 

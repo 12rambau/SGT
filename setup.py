@@ -19,7 +19,8 @@ setup(
         'scipy',
         'numpy',
         'pandas',
-        'geocube'
+        'geocube',
+        'Shapely'
     ],
     classifiers=[
         'Development Status :: 1 - Planning',

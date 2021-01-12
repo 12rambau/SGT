@@ -44,7 +44,7 @@ class TestRasterize(unittest.TestCase):
         
         return 
     
-    def fake_shape(self, column):
+    def fake_vector(self, column):
         """create a shahpaefile composed of 1 squares, one in the middle"""
     
         gdf = gpd.GeoDataFrame({column: [1], 'geometry': [sg.Point(0,0)]}, crs='EPSG:3857') 

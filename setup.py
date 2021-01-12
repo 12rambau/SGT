@@ -14,6 +14,7 @@ setup(
     keywords = ['Python', 'sepal', 'geospatial'], 
     install_requires=[
         'geopandas',
+        'rtree',
         'rasterio',
         'coverage',
         'scipy',

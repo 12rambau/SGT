@@ -18,7 +18,8 @@ setup(
         'coverage',
         'scipy',
         'numpy',
-        'pandas'
+        'pandas',
+        'geocube'
     ],
     classifiers=[
         'Development Status :: 1 - Planning',

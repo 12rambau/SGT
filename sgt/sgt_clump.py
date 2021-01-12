@@ -19,10 +19,6 @@ adjacent similar classified areas.
         mask_rst (str, optional) : use maskfile and process only areas having mask
 value >0
         verbose (bool) : wether to display the print info
-        
-    Return :
-        out_rst
-        
     """
     # apply the verbose option
     v_print = custom_print(verbose)
@@ -142,4 +138,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # launch the function 
-    res = clump(**vars(args))
+    clump(**vars(args))

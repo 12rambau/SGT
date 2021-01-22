@@ -118,7 +118,7 @@ class TestZonalStat(unittest.TestCase):
         # fake data 
         data = {'10': [1, 1, 1, 2], '22': [6, 0, 0, 0], '36': [0, 1, 0, 0]}
         
-        gdf = gpd.GeoDataframe(data, geometry=gpd.read_file(shp).geometry, crs=crs)
+        gdf = gpd.GeoDataFrame(data, geometry=gpd.read_file(shp).geometry, crs=crs)
         
         return gdf
     

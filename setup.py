@@ -21,7 +21,8 @@ setup(
         'numpy',
         'pandas',
         'geocube',
-        'Shapely'
+        'Shapely',
+        'tqdm'
     ],
     classifiers=[
         'Development Status :: 1 - Planning',

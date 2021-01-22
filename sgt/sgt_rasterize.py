@@ -58,7 +58,7 @@ def rasterize(src_vector, out_rst, res=30, column=None, verbose=False):
 
 if __name__ == "__main__":
     
-    #write the description 
+    # write the description 
     descript = "Burns vector geometries into a raster"
     
     # create an arg parser

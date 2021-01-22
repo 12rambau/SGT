@@ -7,3 +7,4 @@ pandas>=1.1.5
 geocube>=0.0.14
 Shapely>=1.7.1
 rtree>=0.9.7
+tqdm>=4.54.0

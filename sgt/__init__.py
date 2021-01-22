@@ -7,3 +7,4 @@ from .sgt_grid import grid
 from .sgt_rasterize import rasterize
 #from .sgt_stat import stats
 #from .sgt_vectorize import vectorize
+from .sgt_zonal import zonal_stat

@@ -91,8 +91,7 @@ def zonal_stat(src_rst, mask_vector, out_vector, measurments=available_stats[:4]
             
             # remove the nodata value from the feature
             features = features[~np.isin(features, nodata)]
-            
-            print(features)
+
             del count
             
     
@@ -147,12 +146,10 @@ def zonal_stat(src_rst, mask_vector, out_vector, measurments=available_stats[:4]
             for idx in tmp_res:
                 val = zs[idx] if idx in zs.keys() else 0
                 tmp_res[idx].append(val)
-        
-    df = pd.DataFrame(tmp_res)
                     
     # create the result geodataframe
     stat_gdf = gpd.GeoDataFrame(
-        df, 
+        tmp_res, 
         geometry = gdf.geometry,
         columns = [str(i) for i in tmp_res] + ['geometry'], # geopandas refuse int as column key
         crs = crs
@@ -161,7 +158,7 @@ def zonal_stat(src_rst, mask_vector, out_vector, measurments=available_stats[:4]
     # save it 
     stat_gdf.to_file(out_vector)
     
-    return df, stat_gdf
+    return
 
 if __name__ == "__main__":
     

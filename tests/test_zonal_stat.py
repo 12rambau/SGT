@@ -40,7 +40,7 @@ class TestZonalStat(unittest.TestCase):
         final_gdf = gpd.read_file(dst)
         expected_gdf = self.expected_result(shp)
         
-        self.assertTrue(identical(final_gdf, expected_gdf))
+        self.assertTrue(final_gdf.equals(expected_gdf))
         
         # destroy everything 
         self.del_shp(shp)

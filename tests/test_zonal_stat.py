@@ -34,7 +34,7 @@ class TestZonalStat(unittest.TestCase):
         
         # create an hist dataframe 
         dst = tmp_dir.joinpath('result.shp')
-        sgt.zonal_stat(src, shp, results, ['hist'])
+        zonal_stat(src, shp, results, ['hist'])
         
         final_gdf = gpd.read_file(results)
         

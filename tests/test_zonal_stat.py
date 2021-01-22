@@ -34,11 +34,13 @@ class TestZonalStat(unittest.TestCase):
         
         # create an hist dataframe 
         dst = tmp_dir.joinpath('result.shp')
-        zonal_stat(src, shp, results, ['hist'])
+        zonal_stat(src, shp, dst, ['hist'])
         
-        final_gdf = gpd.read_file(results)
+        # check the gdf 
+        final_gdf = gpd.read_file(dst)
+        expected_gdf = self.expected_result(shp)
         
-        self.assertTrue(identical(final_gdf,self.expected_result()))
+        self.assertTrue(identical(final_gdf, expected_gdf))
         
         # destroy everything 
         self.del_shp(shp)

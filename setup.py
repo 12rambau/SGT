@@ -22,7 +22,8 @@ setup(
         'pandas',
         'geocube',
         'Shapely',
-        'tqdm'
+        'tqdm',
+        'rasterstats'
     ],
     classifiers=[
         'Development Status :: 1 - Planning',

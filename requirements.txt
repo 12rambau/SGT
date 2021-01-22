@@ -8,3 +8,4 @@ geocube>=0.0.14
 Shapely>=1.7.1
 rtree>=0.9.7
 tqdm>=4.54.0
+rasterstats>=0.15.0
